@@ -441,7 +441,7 @@
 
             async function loadRestaurants() {
                 try {
-                    const response = await fetch("restaurants.txt");
+                    const response = await fetch("/bcn/restaurants.txt");
                     if (!response.ok) {
                         throw new Error("Failed to load restaurant data");
                     }
