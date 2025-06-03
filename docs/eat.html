@@ -78,6 +78,21 @@
                 min-width: 150px;
             }
 
+            .pricing-legend {
+                background: #f8f9fa;
+                padding: 15px 30px;
+                border-bottom: 1px solid #ddd;
+                text-align: center;
+                font-size: 0.9em;
+                color: #666;
+            }
+
+            .pricing-legend .legend-item {
+                display: inline-block;
+                margin: 0 15px;
+                font-weight: 500;
+            }
+
             .stats {
                 background: white;
                 padding: 15px 30px;
@@ -255,6 +270,11 @@
                     width: 100%;
                 }
 
+                .pricing-legend .legend-item {
+                    display: block;
+                    margin: 5px 0;
+                }
+
                 th,
                 td {
                     padding: 8px;
@@ -282,6 +302,12 @@
                         <option value="">All Cuisines</option>
                     </select>
                 </div>
+            </div>
+
+            <div class="pricing-legend">
+                <span class="legend-item">$ = 10-30 EUR</span>
+                <span class="legend-item">$$ = 30-60 EUR</span>
+                <span class="legend-item">$$$ = Above 60 EUR</span>
             </div>
 
             <div id="stats" class="stats"></div>
@@ -441,7 +467,7 @@
 
             async function loadRestaurants() {
                 try {
-                    const response = await fetch("/bcn/restaurants.txt");
+                    const response = await fetch("restaurants.txt");
                     if (!response.ok) {
                         throw new Error("Failed to load restaurant data");
                     }
