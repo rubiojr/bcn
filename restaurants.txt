@@ -69,7 +69,7 @@ Name # Web # Cousine # Rating # Cost
 68. Disfrutar # https://www.disfrutarbarcelona.com # Spanish # 0 # 0
 69. Divinus # https://divinusrestaurant.es # Spanish # 0 # 0
 70. Dos Cielos # https://doscielos.com # Spanish # 0 # 0
-71. Dos Palillos # https://www.dospalillos.com # Asian # 0 # 0
+71. Dos Palillos # https://www.dospalillos.com # Asian # 3 # 3
 72. Dos Pebrots # http://www.dospebrots.com # Spanish # 3 # 2
 73. Dos Torres # https://dostorres.com # Mediterranean # 0 # 0
 74. El 58 # https://el58.cat # Spanish # 0 # 0
