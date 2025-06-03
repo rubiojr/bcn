@@ -166,3 +166,4 @@ Name # Web # Cousine # Rating # Cost
 165. El Internacional # http://internacionalrestbar.com # Mexican # 2 # 2
 166. Bicos # http://www.bicosrestaurante.com # Galician # 3 # 2
 167. Cellers de Gratallops # https://maps.app.goo.gl/M3GSHkK8FSWLrh3T6 # Mediterranean # 3 # 2
+168. La Llama # https://maps.app.goo.gl/sGHCcXbeV43Xppff7 # Galician # 3 # 2
