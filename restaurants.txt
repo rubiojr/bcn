@@ -62,102 +62,103 @@ Name # Web # Cousine # Rating # Cost
 61. Chez Cocó # https://chezcoco.es # French # 0 # 0
 62. Cheriff # https://cheriffrestaurant.com # Seafood # 0 # 0
 63. Cinc Sentits # https://www.cincsentits.com # Spanish # 0 # 0
-64. Ciudad Condal # https://ciudadcondalbarcelona.com # Spanish # 0 # 0
-65. Contraban (Hotel Wittmore) # https://www.wittmorehotel.com/#gastronomia # Mediterranean # 0 # 0
-66. Cruix # https://cruixrestaurant.com # Spanish # 0 # 0
-67. Disfrutar # https://www.disfrutarbarcelona.com # Spanish # 0 # 0
-68. Divinus # https://divinusrestaurant.es # Spanish # 0 # 0
-69. Dos Cielos # https://doscielos.com # Spanish # 0 # 0
-70. Dos Palillos # https://www.dospalillos.com # Asian # 0 # 0
-71. Dos Pebrots # http://www.dospebrots.com # Spanish # 3 # 2
-72. Dos Torres # https://dostorres.com # Mediterranean # 0 # 0
-73. El 58 # https://el58.cat # Spanish # 0 # 0
-74. El Asador de Aranda # https://asadordearanda.com/restaurantes/barcelona # Spanish # 0 # 0
-75. El Filete Ruso # https://elfileteruso.com # Burger # 0 # 0
-76. El Nacional # https://www.elnacionalbcn.com # Spanish # 0 # 0
-77. El Passadís del Pep # https://passadis.com # Seafood # 0 # 0
-78. El Quim de la Boqueria # https://elquimdelaboqueria.com # Spanish # 0 # 0
-79. El Racó d'en Cesc # https://elracodencesc.com # Spanish # 0 # 0
-80. El Sarri # http://elserri.com # Grill # 0 # 0
-81. El Soparet # https://elsoparet.com # Spanish # 0 # 0
-82. El Sortidor de la Filomena Pagès # https://elsortidordelafilomenapages.com # Spanish # 0 # 0
-83. El Suquet de l'Almirall # https://elsuquetdelalmirall.com # Seafood # 0 # 0
-84. El Tendrill # https://eltendrill.com # Vegetarian # 0 # 0
-85. El Xampanyet # https://elxampanyet.com # Spanish # 0 # 0
-86. Enigma # https://enigma.barcelona # Spanish # 0 # 0
-87. Enigmatium # http://enigmatium.com # International # 0 # 0
-88. Espaisucre # https://espaisucre.com # Dessert # 0 # 0
-89. Espai Kru # https://espaikru.com # Seafood # 0 # 0
-90. Gala # https://www.galarestaurant.com # Mediterranean # 0 # 0
-91. Gaig # https://restaurantgaig.com # Spanish # 0 # 0
-92. Gats # https://gatsbarcelona.com # Mediterranean # 0 # 0
-93. Gilda by Belgious # https://gildabybelgious.com # Belgian # 0 # 0
-94. Granja Elena # http://granjaelena.com # Spanish # 0 # 0
-95. Gresca # https://gresca.cat # Spanish # 0 # 0
-96. Hisop # https://hisop.cat # Spanish # 0 # 0
-97. Hispamenca # https://hispamenca.com # Mexican # 0 # 0
-98. Hoja Santa # https://hojasanta.mx/barcelona # Mexican # 0 # 0
-99. Ibericus # https://ibericus.com # Spanish # 0 # 0
-100. Jai-Ca # https://barjaica.com # Spanish # 0 # 0
-101. Kin Tsugi # https://www.restaurantkintsugi.com/en/ # Japanese # 3 # 3
-102. Koy Shunka # https://koyshunka.com # Japanese # 3 # 3
-103. Kushka Barcelona # https://kushka.es/barcelona # Peruvian # 0 # 0
-104. L'Antic Bocoi del Gòtic # https://anticbocoidelgotic.com # Spanish # 0 # 0
-105. La Barra de Carles Abellan # https://labarradecarlosabellan.com # Seafood # 0 # 0
-106. La Barca del Salamanca # https://labarcadelsalamanca.com # Seafood # 0 # 0
-107. La Bombeta # https://labombeta.com # Spanish # 0 # 0
-108. La Cova Fumada # No oficial # Spanish # 0 # 0
-109. La Esquina # https://laesquinabcn.com # Mediterranean # 0 # 0
-110. La Flauta # https://laflauta.com # Spanish # 0 # 0
-111. La Mar Salada # https://lamarsalada.com # Seafood # 0 # 0
-112. La Mundana # https://lamundana.cat # Fusion # 0 # 0
-113. La Panxa del Bisbe # https://lapanxadelbisbe.com # Mediterranean # 0 # 0
-114. La Paradeta # https://laparadeta.com # Seafood # 0 # 0
-115. La Pepita # https://lapeptitabcn.com # Spanish # 0 # 0
-116. La Pubilla # https://lapubilla.cat # Spanish # 0 # 0
-117. La Taverna del Clínic # https://latavernadelclinic.com # Spanish # 0 # 0
-118. La Vietnamita # https://lavietnamita.com # Vietnamese # 0 # 0
-119. Lasarte # https://www.restaurantlasarte.com # Spanish # 0 # 0
-120. Llamber # https://llamber.com/barcelona/ # Spanish # 0 # 0
-121. Lluritu # https://lluritu.com # Seafood # 0 # 0
-122. Louro # https://lourobarcelona.com # Galician # 0 # 0
-123. Macarfi # https://macarfi.com # International # 0 # 0
-124. Mano Rota # https://manorotabcn.com # Fusion # 0 # 0
-125. Marea Alta # https://mareaalta.com # Seafood # 0 # 0
-126. Mediamanga # https://mediamanga.es # Spanish # 0 # 0
-127. Mercado de La Boqueria # https://boqueria.barcelona # Market # 0 # 0
-128. Moments # https://barceloramarskepp.com/moments # Spanish # 0 # 0
-129. Mont Bar # https://montbar.com # Spanish # 0 # 0
-130. Moo # https://moobcn.com # Spanish # 0 # 0
-131. Nectari # https://restaurantnectari.com # Spanish # 0 # 0
-132. Ocaña # https://ocana.barcelona # Spanish # 0 # 0
-133. Oblikue # https://oblikue.cat # Mediterranean # 3 # 2
-134. Omakase Barcelona # https://omakasebarcelona.com # Japanese # 0 # 0
-135. Oria # https://www.oria.barcelona # Spanish # 0 # 0
-136. Papa Serra # https://papaserrabcn.com # Mediterranean # 0 # 0
-137. Parking Pizza # https://parkingpizza.com # Italian # 0 # 0
-138. Passadis del Pep # https://passadis.com # Seafood # 0 # 0
-139. Petit Bangkok # https://petitbangkok.com # Thai # 0 # 0
-140. Petit Comité # https://petitcomite.cat # Spanish # 0 # 0
-141. Pla # https://plarestaurant.com # Mediterranean # 0 # 0
-142. Plata Bistró # https://platabistro.com # French # 0 # 0
-143. Pur # https://purbarcelona.com # Spanish # 0 # 0
-144. Quimet & Quimet # https://quimetquimet.com # Spanish # 0 # 0
-145. Restaurant Monterrey # https://restaurantmonterrey.com # Mexican # 0 # 0
-146. Restaurante Comerç 24 # https://comerc24.com # Fusion # 0 # 0
-147. Rías de Galicia # https://riasdegalicia.com # Galician # 0 # 0
-148. Roig Robí # https://roigrobi.com # Spanish # 0 # 0
-149. Rosa Negra # https://rosanegra.cat # Mexican # 0 # 0
-150. Sagas # https://sagasbarcelona.com # Spanish # 0 # 0
-151. San Tommaso # https://santommaso.es/barcelona/ # Italian # 0 # 0
-152. Santa Gula # https://santagula.es # Mediterranean # 0 # 0
-153. Serra # https://serrabarcelona.com # Mediterranean # 0 # 0
-154. Somodó # https://somodo.es # Japanese # 0 # 0
-155. Sopa Barcelona # https://sopabarcelona.com # Vegetarian # 0 # 0
-156. Suculent # https://suculent.cat # Spanish # 0 # 0
-157. Terraza Martínez # https://terrazzamartinez.com # Spanish # 0 # 0
-158. Tickets # https://www.ticketsbarcelona.com # Spanish # 0 # 0
-159. Via Granados # https://viagranados.com # Mediterranean # 0 # 0
-160. Viana Barcelona # https://vianabcn.com # Mediterranean # 0 # 0
-161. Vila Viniteca # https://vilaviniteca.com # Deli # 0 # 0
-162. Vía Veneto # https://viavenetobarcelona.com # Spanish # 0 # 0
+64. Cobalto # https://cobaltorestaurante.es # Mediterranean # 3 # 2
+65. Ciudad Condal # https://ciudadcondalbarcelona.com # Spanish # 0 # 0
+66. Contraban (Hotel Wittmore) # https://www.wittmorehotel.com/#gastronomia # Mediterranean # 0 # 0
+67. Cruix # https://cruixrestaurant.com # Spanish # 0 # 0
+68. Disfrutar # https://www.disfrutarbarcelona.com # Spanish # 0 # 0
+69. Divinus # https://divinusrestaurant.es # Spanish # 0 # 0
+70. Dos Cielos # https://doscielos.com # Spanish # 0 # 0
+71. Dos Palillos # https://www.dospalillos.com # Asian # 0 # 0
+72. Dos Pebrots # http://www.dospebrots.com # Spanish # 3 # 2
+73. Dos Torres # https://dostorres.com # Mediterranean # 0 # 0
+74. El 58 # https://el58.cat # Spanish # 0 # 0
+75. El Asador de Aranda # https://asadordearanda.com/restaurantes/barcelona # Spanish # 0 # 0
+76. El Filete Ruso # https://elfileteruso.com # Burger # 0 # 0
+77. El Nacional # https://www.elnacionalbcn.com # Spanish # 0 # 0
+78. El Passadís del Pep # https://passadis.com # Seafood # 0 # 0
+79. El Quim de la Boqueria # https://elquimdelaboqueria.com # Spanish # 0 # 0
+80. El Racó d'en Cesc # https://elracodencesc.com # Spanish # 0 # 0
+81. El Sarri # http://elserri.com # Grill # 0 # 0
+82. El Soparet # https://elsoparet.com # Spanish # 0 # 0
+83. El Sortidor de la Filomena Pagès # https://elsortidordelafilomenapages.com # Spanish # 0 # 0
+84. El Suquet de l'Almirall # https://elsuquetdelalmirall.com # Seafood # 0 # 0
+85. El Tendrill # https://eltendrill.com # Vegetarian # 0 # 0
+86. El Xampanyet # https://elxampanyet.com # Spanish # 0 # 0
+87. Enigma # https://enigma.barcelona # Spanish # 0 # 0
+88. Enigmatium # http://enigmatium.com # International # 0 # 0
+89. Espaisucre # https://espaisucre.com # Dessert # 0 # 0
+90. Espai Kru # https://espaikru.com # Seafood # 0 # 0
+91. Gala # https://www.galarestaurant.com # Mediterranean # 0 # 0
+92. Gaig # https://restaurantgaig.com # Spanish # 0 # 0
+93. Gats # https://gatsbarcelona.com # Mediterranean # 0 # 0
+94. Gilda by Belgious # https://gildabybelgious.com # Belgian # 0 # 0
+95. Granja Elena # http://granjaelena.com # Spanish # 0 # 0
+96. Gresca # https://gresca.cat # Spanish # 0 # 0
+97. Hisop # https://hisop.cat # Spanish # 0 # 0
+98. Hispamenca # https://hispamenca.com # Mexican # 0 # 0
+99. Hoja Santa # https://hojasanta.mx/barcelona # Mexican # 0 # 0
+100. Ibericus # https://ibericus.com # Spanish # 0 # 0
+101. Jai-Ca # https://barjaica.com # Spanish # 0 # 0
+102. Kin Tsugi # https://www.restaurantkintsugi.com/en/ # Japanese # 3 # 3
+103. Koy Shunka # https://koyshunka.com # Japanese # 3 # 3
+104. Kushka Barcelona # https://kushka.es/barcelona # Peruvian # 0 # 0
+105. L'Antic Bocoi del Gòtic # https://anticbocoidelgotic.com # Spanish # 0 # 0
+106. La Barra de Carles Abellan # https://labarradecarlosabellan.com # Seafood # 0 # 0
+107. La Barca del Salamanca # https://labarcadelsalamanca.com # Seafood # 0 # 0
+108. La Bombeta # https://labombeta.com # Spanish # 0 # 0
+109. La Cova Fumada # No oficial # Spanish # 0 # 0
+110. La Esquina # https://laesquinabcn.com # Mediterranean # 0 # 0
+111. La Flauta # https://laflauta.com # Spanish # 0 # 0
+112. La Mar Salada # https://lamarsalada.com # Seafood # 0 # 0
+113. La Mundana # https://lamundana.cat # Fusion # 0 # 0
+114. La Panxa del Bisbe # https://lapanxadelbisbe.com # Mediterranean # 0 # 0
+115. La Paradeta # https://laparadeta.com # Seafood # 0 # 0
+116. La Pepita # https://lapeptitabcn.com # Spanish # 0 # 0
+117. La Pubilla # https://lapubilla.cat # Spanish # 0 # 0
+118. La Taverna del Clínic # https://latavernadelclinic.com # Spanish # 0 # 0
+119. La Vietnamita # https://lavietnamita.com # Vietnamese # 0 # 0
+120. Lasarte # https://www.restaurantlasarte.com # Spanish # 0 # 0
+121. Llamber # https://llamber.com/barcelona/ # Spanish # 0 # 0
+122. Lluritu # https://lluritu.com # Seafood # 0 # 0
+123. Louro # https://lourobarcelona.com # Galician # 0 # 0
+124. Macarfi # https://macarfi.com # International # 0 # 0
+125. Mano Rota # https://manorotabcn.com # Fusion # 0 # 0
+126. Marea Alta # https://mareaalta.com # Seafood # 0 # 0
+127. Mediamanga # https://mediamanga.es # Spanish # 0 # 0
+128. Mercado de La Boqueria # https://boqueria.barcelona # Market # 0 # 0
+129. Moments # https://barceloramarskepp.com/moments # Spanish # 0 # 0
+130. Mont Bar # https://montbar.com # Spanish # 0 # 0
+131. Moo # https://moobcn.com # Spanish # 0 # 0
+132. Nectari # https://restaurantnectari.com # Spanish # 0 # 0
+133. Ocaña # https://ocana.barcelona # Spanish # 0 # 0
+134. Oblikue # https://oblikue.cat # Mediterranean # 3 # 2
+135. Omakase Barcelona # https://omakasebarcelona.com # Japanese # 0 # 0
+136. Oria # https://www.oria.barcelona # Spanish # 0 # 0
+137. Papa Serra # https://papaserrabcn.com # Mediterranean # 0 # 0
+138. Parking Pizza # https://parkingpizza.com # Italian # 0 # 0
+139. Passadis del Pep # https://passadis.com # Seafood # 0 # 0
+140. Petit Bangkok # https://petitbangkok.com # Thai # 0 # 0
+141. Petit Comité # https://petitcomite.cat # Spanish # 0 # 0
+142. Pla # https://plarestaurant.com # Mediterranean # 0 # 0
+143. Plata Bistró # https://platabistro.com # French # 0 # 0
+144. Pur # https://purbarcelona.com # Spanish # 0 # 0
+145. Quimet & Quimet # https://quimetquimet.com # Spanish # 0 # 0
+146. Restaurant Monterrey # https://restaurantmonterrey.com # Mexican # 0 # 0
+147. Restaurante Comerç 24 # https://comerc24.com # Fusion # 0 # 0
+148. Rías de Galicia # https://riasdegalicia.com # Galician # 0 # 0
+149. Roig Robí # https://roigrobi.com # Spanish # 0 # 0
+150. Rosa Negra # https://rosanegra.cat # Mexican # 0 # 0
+151. Sagas # https://sagasbarcelona.com # Spanish # 0 # 0
+152. San Tommaso # https://santommaso.es/barcelona/ # Italian # 0 # 0
+153. Santa Gula # https://santagula.es # Mediterranean # 0 # 0
+154. Serra # https://serrabarcelona.com # Mediterranean # 0 # 0
+155. Somodó # https://somodo.es # Japanese # 0 # 0
+156. Sopa Barcelona # https://sopabarcelona.com # Vegetarian # 0 # 0
+157. Suculent # https://suculent.cat # Spanish # 0 # 0
+158. Terraza Martínez # https://terrazzamartinez.com # Spanish # 0 # 0
+159. Tickets # https://www.ticketsbarcelona.com # Spanish # 0 # 0
+160. Via Granados # https://viagranados.com # Mediterranean # 0 # 0
+161. Viana Barcelona # https://vianabcn.com # Mediterranean # 0 # 0
+162. Vila Viniteca # https://vilaviniteca.com # Deli # 0 # 0
+163. Vía Veneto # https://viavenetobarcelona.com # Spanish # 0 # 0
