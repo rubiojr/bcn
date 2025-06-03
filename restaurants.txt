@@ -163,3 +163,4 @@ Name # Web # Cousine # Rating # Cost
 162. Vila Viniteca # https://vilaviniteca.com # Deli # 0 # 0
 163. Vía Veneto # https://viavenetobarcelona.com # Spanish # 0 # 0
 164. 180º El Masnou # https://www.180elmasnou.com/ # Mediterranean # 3 # 2
+165. El Internacional # http://internacionalrestbar.com # Mexican # 2 # 2
