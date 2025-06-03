@@ -292,6 +292,24 @@
             }
 
             @media (max-width: 768px) {
+                .header h1 {
+                    font-size: 0;
+                }
+
+                .header h1::before {
+                    content: "Restaurants 🍽️";
+                    font-size: 2rem;
+                    display: block;
+                }
+
+                .header p {
+                    display: none;
+                }
+
+                .cuisine-filter {
+                    display: none;
+                }
+
                 .search-box {
                     flex-direction: column;
                 }
@@ -337,9 +355,9 @@
             </div>
 
             <div class="pricing-legend">
-                <span class="legend-item">$ = 10-30 EUR</span>
-                <span class="legend-item">$$ = 30-60 EUR</span>
-                <span class="legend-item">$$$ = Above 60 EUR</span>
+                <span class="legend-item">💲10-30 EUR</span>
+                <span class="legend-item">💲💲30-60 EUR</span>
+                <span class="legend-item">💲💲💲Above 60 EUR</span>
             </div>
 
             <div id="stats" class="stats"></div>

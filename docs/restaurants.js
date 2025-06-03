@@ -6,7 +6,7 @@ let searchDebounceTimer = null;
 function getCostDisplay(cost) {
   const costNum = parseInt(cost);
   if (costNum === 0) return "--";
-  return "$".repeat(Math.max(1, costNum));
+  return "💲".repeat(Math.max(1, costNum));
 }
 
 function getRatingDisplay(rating) {
