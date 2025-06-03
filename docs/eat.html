@@ -4,7 +4,10 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Barcelona Restaurants Guide</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>">
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>"
+        />
         <style>
             * {
                 margin: 0;
@@ -373,7 +376,8 @@
         <script>
             let allRestaurants = [];
             let filteredRestaurants = [];
-            let currentSort = { column: "rating", direction: "desc" };
+            let currentSort = { column: "name", direction: "asc" };
+            let searchDebounceTimer = null;
 
             function getCostDisplay(cost) {
                 const costNum = parseInt(cost);
@@ -395,17 +399,22 @@
                 const lines = data.trim().split("\n");
                 const restaurants = [];
 
-                // Skip the first line (header)
-                lines.slice(1).forEach((line) => {
+                // Skip the first line (header) and pre-compile regex
+                const nameRegex = /^\d+\.\s*(.+?)\s*#/;
+                const numberRegex = /^(\d+)\./;
+
+                for (let i = 1; i < lines.length; i++) {
+                    const line = lines[i];
                     const parts = line.split(" # ");
+
                     if (parts.length >= 5) {
-                        const nameMatch = line.match(/^\d+\.\s*(.+?)\s*#/);
-                        const numberMatch = line.match(/^(\d+)\./);
+                        const nameMatch = nameRegex.exec(line);
+                        const numberMatch = numberRegex.exec(line);
                         const name = nameMatch
                             ? nameMatch[1].trim()
                             : parts[0].replace(/^\d+\.\s*/, "");
                         const number = numberMatch
-                            ? parseInt(numberMatch[1])
+                            ? parseInt(numberMatch[1], 10)
                             : 0;
 
                         restaurants.push({
@@ -417,7 +426,7 @@
                             cost: parts[4].trim(),
                         });
                     }
-                });
+                }
 
                 return restaurants;
             }
@@ -456,24 +465,61 @@
                     return;
                 }
 
-                tbody.innerHTML = filteredRestaurants
-                    .map((restaurant) => {
-                        const nameCell =
-                            restaurant.website === "No Web" ||
-                            restaurant.website === "No oficial"
-                                ? `<span class="no-website"><span class="restaurant-number">${restaurant.number}.</span> ${restaurant.name} (no website)</span>`
-                                : `<a href="${restaurant.website}" target="_blank" class="restaurant-link"><span class="restaurant-number">${restaurant.number}.</span> ${restaurant.name}</a>`;
+                // Use DocumentFragment for better performance
+                const fragment = document.createDocumentFragment();
 
-                        return `
-                    <tr>
-                        <td class="restaurant-name">${nameCell}</td>
-                        <td><span class="cuisine-tag ${getCuisineClass(restaurant.cuisine)}">${restaurant.cuisine}</span></td>
-                        <td class="cost">${getCostDisplay(restaurant.cost)}</td>
-                        <td class="rating">${getRatingDisplay(restaurant.rating)}</td>
-                    </tr>
-                `;
-                    })
-                    .join("");
+                filteredRestaurants.forEach((restaurant) => {
+                    const tr = document.createElement("tr");
+
+                    // Name cell
+                    const nameCell = document.createElement("td");
+                    nameCell.className = "restaurant-name";
+
+                    if (
+                        restaurant.website === "No Web" ||
+                        restaurant.website === "No oficial"
+                    ) {
+                        const span = document.createElement("span");
+                        span.className = "no-website";
+                        span.innerHTML = `<span class="restaurant-number">${restaurant.number}.</span> ${restaurant.name} (no website)`;
+                        nameCell.appendChild(span);
+                    } else {
+                        const link = document.createElement("a");
+                        link.href = restaurant.website;
+                        link.target = "_blank";
+                        link.className = "restaurant-link";
+                        link.innerHTML = `<span class="restaurant-number">${restaurant.number}.</span> ${restaurant.name}`;
+                        nameCell.appendChild(link);
+                    }
+
+                    // Cuisine cell
+                    const cuisineCell = document.createElement("td");
+                    const cuisineSpan = document.createElement("span");
+                    cuisineSpan.className = `cuisine-tag ${getCuisineClass(restaurant.cuisine)}`;
+                    cuisineSpan.textContent = restaurant.cuisine;
+                    cuisineCell.appendChild(cuisineSpan);
+
+                    // Cost cell
+                    const costCell = document.createElement("td");
+                    costCell.className = "cost";
+                    costCell.innerHTML = getCostDisplay(restaurant.cost);
+
+                    // Rating cell
+                    const ratingCell = document.createElement("td");
+                    ratingCell.className = "rating";
+                    ratingCell.innerHTML = getRatingDisplay(restaurant.rating);
+
+                    tr.appendChild(nameCell);
+                    tr.appendChild(cuisineCell);
+                    tr.appendChild(costCell);
+                    tr.appendChild(ratingCell);
+
+                    fragment.appendChild(tr);
+                });
+
+                // Clear and append in one operation
+                tbody.innerHTML = "";
+                tbody.appendChild(fragment);
 
                 updateStats();
             }
@@ -483,40 +529,48 @@
             }
 
             function sortRestaurants(restaurants, column, direction) {
-                return [...restaurants].sort((a, b) => {
-                    let valueA, valueB;
+                // Pre-compute sorting values to avoid repeated calculations
+                const restaurantsWithSortKeys = restaurants.map(
+                    (restaurant) => {
+                        let sortKey;
+                        switch (column) {
+                            case "name":
+                                sortKey = restaurant.number;
+                                break;
+                            case "cuisine":
+                                sortKey = restaurant.cuisine.toLowerCase();
+                                break;
+                            case "cost":
+                                sortKey = parseInt(restaurant.cost, 10) || 0;
+                                break;
+                            case "rating":
+                                sortKey = parseInt(restaurant.rating, 10) || 0;
+                                break;
+                            default:
+                                sortKey = 0;
+                        }
+                        return { ...restaurant, sortKey };
+                    },
+                );
 
-                    switch (column) {
-                        case "name":
-                            valueA = a.number;
-                            valueB = b.number;
-                            break;
-                        case "cuisine":
-                            valueA = a.cuisine.toLowerCase();
-                            valueB = b.cuisine.toLowerCase();
-                            break;
-                        case "cost":
-                            valueA = parseInt(a.cost) || 0;
-                            valueB = parseInt(b.cost) || 0;
-                            break;
-                        case "rating":
-                            valueA = parseInt(a.rating) || 0;
-                            valueB = parseInt(b.rating) || 0;
-                            break;
-                        default:
-                            return 0;
-                    }
+                return restaurantsWithSortKeys
+                    .sort((a, b) => {
+                        const valueA = a.sortKey;
+                        const valueB = b.sortKey;
 
-                    if (valueA < valueB) return direction === "asc" ? -1 : 1;
-                    if (valueA > valueB) return direction === "asc" ? 1 : -1;
+                        if (valueA < valueB)
+                            return direction === "asc" ? -1 : 1;
+                        if (valueA > valueB)
+                            return direction === "asc" ? 1 : -1;
 
-                    // Secondary sort by original number for ties
-                    if (column !== "name") {
-                        return a.number - b.number;
-                    }
+                        // Secondary sort by original number for ties
+                        if (column !== "name") {
+                            return a.number - b.number;
+                        }
 
-                    return 0;
-                });
+                        return 0;
+                    })
+                    .map(({ sortKey, ...restaurant }) => restaurant);
             }
 
             function updateSortIndicators() {
@@ -541,19 +595,38 @@
                 const selectedCuisine =
                     document.getElementById("cuisineFilter").value;
 
-                filteredRestaurants = allRestaurants.filter((restaurant) => {
-                    const nameMatch = removeDiacritics(
-                        restaurant.name.toLowerCase(),
-                    ).includes(searchTerm);
-                    const cuisineMatch = removeDiacritics(
-                        restaurant.cuisine.toLowerCase(),
-                    ).includes(searchTerm);
-                    const matchesSearch = nameMatch || cuisineMatch;
-                    const matchesCuisine =
-                        !selectedCuisine ||
-                        restaurant.cuisine === selectedCuisine;
-                    return matchesSearch && matchesCuisine;
-                });
+                // Early return if no search term and no cuisine filter
+                if (!searchTerm && !selectedCuisine) {
+                    filteredRestaurants = [...allRestaurants];
+                } else {
+                    filteredRestaurants = allRestaurants.filter(
+                        (restaurant) => {
+                            // Skip expensive operations if possible
+                            if (
+                                selectedCuisine &&
+                                restaurant.cuisine !== selectedCuisine
+                            ) {
+                                return false;
+                            }
+
+                            if (!searchTerm) {
+                                return true;
+                            }
+
+                            const nameMatch = removeDiacritics(
+                                restaurant.name.toLowerCase(),
+                            ).includes(searchTerm);
+
+                            if (nameMatch) return true;
+
+                            const cuisineMatch = removeDiacritics(
+                                restaurant.cuisine.toLowerCase(),
+                            ).includes(searchTerm);
+
+                            return cuisineMatch;
+                        },
+                    );
+                }
 
                 // Apply current sort to filtered results
                 filteredRestaurants = sortRestaurants(
@@ -561,7 +634,13 @@
                     currentSort.column,
                     currentSort.direction,
                 );
+
                 renderTable();
+            }
+
+            function debouncedFilterRestaurants() {
+                clearTimeout(searchDebounceTimer);
+                searchDebounceTimer = setTimeout(filterRestaurants, 150);
             }
 
             async function loadRestaurants() {
@@ -611,7 +690,7 @@
                     // Add event listeners
                     document
                         .getElementById("searchInput")
-                        .addEventListener("input", filterRestaurants);
+                        .addEventListener("input", debouncedFilterRestaurants);
                     document
                         .getElementById("cuisineFilter")
                         .addEventListener("change", filterRestaurants);
