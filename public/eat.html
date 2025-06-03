@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Barcelona Restaurants Guide</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                background: white;
+                color: #333;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                background: white;
+            }
+
+            .header {
+                background: white;
+                color: #333;
+                padding: 30px;
+                text-align: center;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .header h1 {
+                font-size: 2.5em;
+                margin-bottom: 10px;
+            }
+
+            .header p {
+                font-size: 1.1em;
+            }
+
+            .search-container {
+                padding: 20px 30px;
+                background: white;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .search-box {
+                display: flex;
+                gap: 15px;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+
+            .search-input {
+                flex: 1;
+                min-width: 250px;
+                padding: 12px 15px;
+                border: 2px solid #ddd;
+                border-radius: 25px;
+                font-size: 16px;
+                transition: border-color 0.3s;
+            }
+
+            .search-input:focus {
+                outline: none;
+                border-color: #333;
+            }
+
+            .cuisine-filter {
+                padding: 12px 15px;
+                border: 2px solid #ddd;
+                border-radius: 25px;
+                font-size: 16px;
+                background: white;
+                min-width: 150px;
+            }
+
+            .stats {
+                background: white;
+                padding: 15px 30px;
+                font-weight: bold;
+                color: #333;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .table-container {
+                overflow-x: auto;
+                max-height: 70vh;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            th {
+                background: white;
+                color: #333;
+                padding: 15px;
+                text-align: left;
+                font-weight: 600;
+                position: sticky;
+                top: 0;
+                z-index: 10;
+                border-bottom: 2px solid #ddd;
+            }
+
+            td {
+                padding: 12px 15px;
+                border-bottom: 1px solid #eee;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            tr:hover {
+                background-color: #f0f0f0;
+            }
+
+            .restaurant-name {
+                font-weight: 600;
+                color: #2c3e50;
+            }
+
+            .website-link {
+                color: #333;
+                text-decoration: underline;
+                padding: 5px 10px;
+                border-radius: 15px;
+                background: #f0f0f0;
+                font-size: 0.9em;
+            }
+
+            .website-link:hover {
+                background: #ddd;
+                color: #333;
+            }
+
+            .cuisine-tag {
+                padding: 5px 12px;
+                border-radius: 20px;
+                font-size: 0.85em;
+                font-weight: 500;
+                color: white;
+                text-align: center;
+            }
+
+            .cuisine-spanish {
+                background: #e74c3c;
+            }
+            .cuisine-mediterranean {
+                background: #3498db;
+            }
+            .cuisine-seafood {
+                background: #16a085;
+            }
+            .cuisine-italian {
+                background: #27ae60;
+            }
+            .cuisine-french {
+                background: #8e44ad;
+            }
+            .cuisine-japanese {
+                background: #e67e22;
+            }
+            .cuisine-mexican {
+                background: #f39c12;
+            }
+            .cuisine-american {
+                background: #34495e;
+            }
+            .cuisine-asian {
+                background: #9b59b6;
+            }
+            .cuisine-peruvian {
+                background: #d35400;
+            }
+            .cuisine-vegetarian {
+                background: #2ecc71;
+            }
+            .cuisine-international {
+                background: #95a5a6;
+            }
+            .cuisine-thai {
+                background: #e91e63;
+            }
+            .cuisine-vietnamese {
+                background: #607d8b;
+            }
+            .cuisine-belgian {
+                background: #795548;
+            }
+            .cuisine-galician {
+                background: #ff5722;
+            }
+            .cuisine-fusion {
+                background: #673ab7;
+            }
+            .cuisine-burger {
+                background: #ff9800;
+            }
+            .cuisine-grill {
+                background: #5d4037;
+            }
+            .cuisine-dessert {
+                background: #ec407a;
+            }
+            .cuisine-market {
+                background: #009688;
+            }
+            .cuisine-deli {
+                background: #4caf50;
+            }
+
+            .cost,
+            .rating {
+                font-size: 1.1em;
+                text-align: center;
+            }
+
+            .cost {
+                color: #27ae60;
+                font-weight: bold;
+            }
+
+            .rating {
+                color: #f39c12;
+            }
+
+            .loading {
+                text-align: center;
+                padding: 50px;
+                font-size: 1.2em;
+                color: #666;
+            }
+
+            .error {
+                text-align: center;
+                padding: 50px;
+                color: #333;
+                font-size: 1.1em;
+            }
+
+            @media (max-width: 768px) {
+                .search-box {
+                    flex-direction: column;
+                }
+
+                .search-input,
+                .cuisine-filter {
+                    width: 100%;
+                }
+
+                th,
+                td {
+                    padding: 8px;
+                    font-size: 0.9em;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>La Gran Ola 🌊 - Barcelona Restaurants 🍽️ Guide</h1>
+                <p>Discover the best dining experiences in Barcelona</p>
+            </div>
+
+            <div class="search-container">
+                <div class="search-box">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        class="search-input"
+                        placeholder="🔍 Search restaurants by name or cuisine..."
+                    />
+                    <select id="cuisineFilter" class="cuisine-filter">
+                        <option value="">All Cuisines</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="stats" class="stats"></div>
+
+            <div class="table-container">
+                <table id="restaurantTable">
+                    <thead>
+                        <tr>
+                            <th>Restaurant</th>
+                            <th>Website</th>
+                            <th>Cuisine</th>
+                            <th>Cost</th>
+                            <th>Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr>
+                            <td colspan="5" class="loading">
+                                Loading restaurants...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <script>
+            let allRestaurants = [];
+            let filteredRestaurants = [];
+
+            function getCostDisplay(cost) {
+                const costNum = parseInt(cost);
+                if (costNum === 0) return "--";
+                return "$".repeat(Math.max(1, costNum));
+            }
+
+            function getRatingDisplay(rating) {
+                const ratingNum = parseInt(rating);
+                if (ratingNum === 0) return "—";
+                return "⭐".repeat(ratingNum);
+            }
+
+            function getCuisineClass(cuisine) {
+                return "cuisine-" + cuisine.toLowerCase().replace(/\s+/g, "-");
+            }
+
+            function parseRestaurantData(data) {
+                const lines = data.trim().split("\n");
+                const restaurants = [];
+
+                // Skip the first line (header)
+                lines.slice(1).forEach((line) => {
+                    const parts = line.split(" # ");
+                    if (parts.length >= 5) {
+                        const nameMatch = line.match(/^\d+\.\s*(.+?)\s*#/);
+                        const name = nameMatch
+                            ? nameMatch[1].trim()
+                            : parts[0].replace(/^\d+\.\s*/, "");
+
+                        restaurants.push({
+                            name: name,
+                            website: parts[1].trim(),
+                            cuisine: parts[2].trim(),
+                            rating: parts[3].trim(),
+                            cost: parts[4].trim(),
+                        });
+                    }
+                });
+
+                return restaurants;
+            }
+
+            function populateCuisineFilter() {
+                const cuisines = [
+                    ...new Set(allRestaurants.map((r) => r.cuisine)),
+                ].sort();
+                const filter = document.getElementById("cuisineFilter");
+
+                cuisines.forEach((cuisine) => {
+                    const option = document.createElement("option");
+                    option.value = cuisine;
+                    option.textContent = cuisine;
+                    filter.appendChild(option);
+                });
+            }
+
+            function updateStats() {
+                const total = allRestaurants.length;
+                const filtered = filteredRestaurants.length;
+                const cuisines = new Set(
+                    filteredRestaurants.map((r) => r.cuisine),
+                ).size;
+
+                document.getElementById("stats").innerHTML =
+                    `Showing ${filtered} of ${total} restaurants • ${cuisines} cuisines`;
+            }
+
+            function renderTable() {
+                const tbody = document.getElementById("tableBody");
+
+                if (filteredRestaurants.length === 0) {
+                    tbody.innerHTML =
+                        '<tr><td colspan="5" class="error">No restaurants found matching your criteria</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = filteredRestaurants
+                    .map((restaurant) => {
+                        const websiteCell =
+                            restaurant.website === "No Web" ||
+                            restaurant.website === "No oficial"
+                                ? '<span style="color: #999;">No website</span>'
+                                : `<a href="${restaurant.website}" target="_blank" class="website-link">Visit</a>`;
+
+                        return `
+                    <tr>
+                        <td class="restaurant-name">${restaurant.name}</td>
+                        <td>${websiteCell}</td>
+                        <td><span class="cuisine-tag ${getCuisineClass(restaurant.cuisine)}">${restaurant.cuisine}</span></td>
+                        <td class="cost">${getCostDisplay(restaurant.cost)}</td>
+                        <td class="rating">${getRatingDisplay(restaurant.rating)}</td>
+                    </tr>
+                `;
+                    })
+                    .join("");
+
+                updateStats();
+            }
+
+            function removeDiacritics(str) {
+                return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            }
+
+            function filterRestaurants() {
+                const searchTerm = removeDiacritics(
+                    document.getElementById("searchInput").value.toLowerCase(),
+                );
+                const selectedCuisine =
+                    document.getElementById("cuisineFilter").value;
+
+                filteredRestaurants = allRestaurants.filter((restaurant) => {
+                    const nameMatch = removeDiacritics(
+                        restaurant.name.toLowerCase(),
+                    ).includes(searchTerm);
+                    const cuisineMatch = removeDiacritics(
+                        restaurant.cuisine.toLowerCase(),
+                    ).includes(searchTerm);
+                    const matchesSearch = nameMatch || cuisineMatch;
+                    const matchesCuisine =
+                        !selectedCuisine ||
+                        restaurant.cuisine === selectedCuisine;
+                    return matchesSearch && matchesCuisine;
+                });
+
+                renderTable();
+            }
+
+            async function loadRestaurants() {
+                try {
+                    const response = await fetch("restaurants.txt");
+                    if (!response.ok) {
+                        throw new Error("Failed to load restaurant data");
+                    }
+
+                    const data = await response.text();
+                    allRestaurants = parseRestaurantData(data);
+                    // Sort by rating (highest first), then by name
+                    allRestaurants.sort((a, b) => {
+                        const ratingA = parseInt(a.rating);
+                        const ratingB = parseInt(b.rating);
+                        if (ratingB !== ratingA) {
+                            return ratingB - ratingA; // Higher rating first
+                        }
+                        return a.name.localeCompare(b.name); // Then by name alphabetically
+                    });
+                    filteredRestaurants = [...allRestaurants];
+
+                    populateCuisineFilter();
+                    renderTable();
+
+                    // Add event listeners
+                    document
+                        .getElementById("searchInput")
+                        .addEventListener("input", filterRestaurants);
+                    document
+                        .getElementById("cuisineFilter")
+                        .addEventListener("change", filterRestaurants);
+                } catch (error) {
+                    document.getElementById("tableBody").innerHTML =
+                        '<tr><td colspan="5" class="error">Error loading restaurant data. Please make sure restaurants.txt is available.</td></tr>';
+                    console.error("Error loading restaurants:", error);
+                }
+            }
+
+            // Load restaurants when page loads
+            document.addEventListener("DOMContentLoaded", loadRestaurants);
+        </script>
+    </body>
+</html>
