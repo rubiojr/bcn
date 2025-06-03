@@ -100,7 +100,7 @@ Name # Web # Cousine # Rating # Cost
 99. Hoja Santa # https://hojasanta.mx/barcelona # Mexican # 0 # 0
 100. Ibericus # https://ibericus.com # Spanish # 0 # 0
 101. Jai-Ca # https://barjaica.com # Spanish # 0 # 0
-102. Koy Shunka # https://koyshunka.com # Japanese # 0 # 0
+102. Koy Shunka # https://koyshunka.com # Japanese # 3 # 3
 103. Kushka Barcelona # https://kushka.es/barcelona # Peruvian # 0 # 0
 104. L'Antic Bocoi del Gòtic # https://anticbocoidelgotic.com # Spanish # 0 # 0
 105. La Barra de Carles Abellan # https://labarradecarlosabellan.com # Seafood # 0 # 0
