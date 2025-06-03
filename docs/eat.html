@@ -141,18 +141,20 @@
                 color: #2c3e50;
             }
 
-            .website-link {
-                color: #333;
-                text-decoration: underline;
-                padding: 5px 10px;
-                border-radius: 15px;
-                background: #f0f0f0;
-                font-size: 0.9em;
+            .restaurant-link {
+                color: #2c3e50;
+                text-decoration: none;
+                font-weight: 600;
             }
 
-            .website-link:hover {
-                background: #ddd;
-                color: #333;
+            .restaurant-link:hover {
+                color: #3498db;
+                text-decoration: underline;
+            }
+
+            .no-website {
+                color: #2c3e50;
+                font-weight: 600;
             }
 
             .cuisine-tag {
@@ -317,7 +319,6 @@
                     <thead>
                         <tr>
                             <th>Restaurant</th>
-                            <th>Website</th>
                             <th>Cuisine</th>
                             <th>Cost</th>
                             <th>Rating</th>
@@ -325,7 +326,7 @@
                     </thead>
                     <tbody id="tableBody">
                         <tr>
-                            <td colspan="5" class="loading">
+                            <td colspan="4" class="loading">
                                 Loading restaurants...
                             </td>
                         </tr>
@@ -410,22 +411,21 @@
 
                 if (filteredRestaurants.length === 0) {
                     tbody.innerHTML =
-                        '<tr><td colspan="5" class="error">No restaurants found matching your criteria</td></tr>';
+                        '<tr><td colspan="4" class="error">No restaurants found matching your criteria</td></tr>';
                     return;
                 }
 
                 tbody.innerHTML = filteredRestaurants
                     .map((restaurant) => {
-                        const websiteCell =
+                        const nameCell =
                             restaurant.website === "No Web" ||
                             restaurant.website === "No oficial"
-                                ? '<span style="color: #999;">No website</span>'
-                                : `<a href="${restaurant.website}" target="_blank" class="website-link">Visit</a>`;
+                                ? `<span class="no-website">${restaurant.name} (no website)</span>`
+                                : `<a href="${restaurant.website}" target="_blank" class="restaurant-link">${restaurant.name}</a>`;
 
                         return `
                     <tr>
-                        <td class="restaurant-name">${restaurant.name}</td>
-                        <td>${websiteCell}</td>
+                        <td class="restaurant-name">${nameCell}</td>
                         <td><span class="cuisine-tag ${getCuisineClass(restaurant.cuisine)}">${restaurant.cuisine}</span></td>
                         <td class="cost">${getCostDisplay(restaurant.cost)}</td>
                         <td class="rating">${getRatingDisplay(restaurant.rating)}</td>
@@ -497,7 +497,7 @@
                         .addEventListener("change", filterRestaurants);
                 } catch (error) {
                     document.getElementById("tableBody").innerHTML =
-                        '<tr><td colspan="5" class="error">Error loading restaurant data. Please make sure restaurants.txt is available.</td></tr>';
+                        '<tr><td colspan="4" class="error">Error loading restaurant data. Please make sure restaurants.txt is available.</td></tr>';
                     console.error("Error loading restaurants:", error);
                 }
             }
