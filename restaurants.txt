@@ -15,7 +15,7 @@ Name # Web # Cousine # Rating # Cost
 14. Bananas # https://bananasbarcelona.com # International # 0 # 0
 15. Bar Alegría # https://baralegriabcn.com # Mediterranean # 0 # 0
 16. Bar Brutal # https://barbrutal.com # Mediterranean # 0 # 0
-17. Bar Cañete # https://cañetebarcelona.com # Mediterranean # 0 # 0
+17. Bar Cañete # https://cañetebarcelona.com # Mediterranean # 3 # 2
 18. Bar del Pla # https://bardelpla.cat # Mediterranean # 0 # 0
 19. Bar Jai-Ca # http://barjaica.com # Mediterranean # 0 # 0
 20. Bar Mut # https://barmut.com # Mediterranean # 0 # 0

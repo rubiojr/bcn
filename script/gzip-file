@@ -1,0 +1,2 @@
+#!/bin/sh
+cat restaurants.txt | gzip > docs/restaurants.gz
