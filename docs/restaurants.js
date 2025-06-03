@@ -75,14 +75,14 @@ function updateStats() {
 }
 
 function renderTable() {
-    const tbody = document.getElementById("tableBody");
+  const tbody = document.getElementById("tableBody");
 
-    if (filteredRestaurants.length === 0) {
-        tbody.innerHTML =
-            '<tr><td colspan="4" class="error">No restaurants found matching your criteria</td></tr>';
-        updateStats();
-        return;
-    }
+  if (filteredRestaurants.length === 0) {
+    tbody.innerHTML =
+      '<tr><td colspan="4" class="error">No restaurants found matching your criteria</td></tr>';
+    updateStats();
+    return;
+  }
 
   // Use DocumentFragment for better performance
   const fragment = document.createDocumentFragment();
@@ -247,7 +247,7 @@ function filterRestaurants() {
 
 function debouncedFilterRestaurants() {
   clearTimeout(searchDebounceTimer);
-  searchDebounceTimer = setTimeout(filterRestaurants, 150);
+  searchDebounceTimer = setTimeout(filterRestaurants, 300);
 }
 
 async function loadRestaurants() {
