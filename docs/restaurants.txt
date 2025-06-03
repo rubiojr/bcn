@@ -131,32 +131,33 @@ Name # Web # Cousine # Rating # Cost
 130. Moo # https://moobcn.com # Spanish # 0 # 0
 131. Nectari # https://restaurantnectari.com # Spanish # 0 # 0
 132. Ocaña # https://ocana.barcelona # Spanish # 0 # 0
-133. Omakase Barcelona # https://omakasebarcelona.com # Japanese # 0 # 0
-134. Oria # https://www.oria.barcelona # Spanish # 0 # 0
-135. Papa Serra # https://papaserrabcn.com # Mediterranean # 0 # 0
-136. Parking Pizza # https://parkingpizza.com # Italian # 0 # 0
-137. Passadis del Pep # https://passadis.com # Seafood # 0 # 0
-138. Petit Bangkok # https://petitbangkok.com # Thai # 0 # 0
-139. Petit Comité # https://petitcomite.cat # Spanish # 0 # 0
-140. Pla # https://plarestaurant.com # Mediterranean # 0 # 0
-141. Plata Bistró # https://platabistro.com # French # 0 # 0
-142. Pur # https://purbarcelona.com # Spanish # 0 # 0
-143. Quimet & Quimet # https://quimetquimet.com # Spanish # 0 # 0
-144. Restaurant Monterrey # https://restaurantmonterrey.com # Mexican # 0 # 0
-145. Restaurante Comerç 24 # https://comerc24.com # Fusion # 0 # 0
-146. Rías de Galicia # https://riasdegalicia.com # Galician # 0 # 0
-147. Roig Robí # https://roigrobi.com # Spanish # 0 # 0
-148. Rosa Negra # https://rosanegra.cat # Mexican # 0 # 0
-149. Sagas # https://sagasbarcelona.com # Spanish # 0 # 0
-150. San Tommaso # https://santommaso.es/barcelona/ # Italian # 0 # 0
-151. Santa Gula # https://santagula.es # Mediterranean # 0 # 0
-152. Serra # https://serrabarcelona.com # Mediterranean # 0 # 0
-153. Somodó # https://somodo.es # Japanese # 0 # 0
-154. Sopa Barcelona # https://sopabarcelona.com # Vegetarian # 0 # 0
-155. Suculent # https://suculent.cat # Spanish # 0 # 0
-156. Terraza Martínez # https://terrazzamartinez.com # Spanish # 0 # 0
-157. Tickets # https://www.ticketsbarcelona.com # Spanish # 0 # 0
-158. Via Granados # https://viagranados.com # Mediterranean # 0 # 0
-159. Viana Barcelona # https://vianabcn.com # Mediterranean # 0 # 0
-160. Vila Viniteca # https://vilaviniteca.com # Deli # 0 # 0
-161. Vía Veneto # https://viavenetobarcelona.com # Spanish # 0 # 0
+133. Oblikue # https://oblikue.cat # Mediterranean # 3 # 2
+134. Omakase Barcelona # https://omakasebarcelona.com # Japanese # 0 # 0
+135. Oria # https://www.oria.barcelona # Spanish # 0 # 0
+136. Papa Serra # https://papaserrabcn.com # Mediterranean # 0 # 0
+137. Parking Pizza # https://parkingpizza.com # Italian # 0 # 0
+138. Passadis del Pep # https://passadis.com # Seafood # 0 # 0
+139. Petit Bangkok # https://petitbangkok.com # Thai # 0 # 0
+140. Petit Comité # https://petitcomite.cat # Spanish # 0 # 0
+141. Pla # https://plarestaurant.com # Mediterranean # 0 # 0
+142. Plata Bistró # https://platabistro.com # French # 0 # 0
+143. Pur # https://purbarcelona.com # Spanish # 0 # 0
+144. Quimet & Quimet # https://quimetquimet.com # Spanish # 0 # 0
+145. Restaurant Monterrey # https://restaurantmonterrey.com # Mexican # 0 # 0
+146. Restaurante Comerç 24 # https://comerc24.com # Fusion # 0 # 0
+147. Rías de Galicia # https://riasdegalicia.com # Galician # 0 # 0
+148. Roig Robí # https://roigrobi.com # Spanish # 0 # 0
+149. Rosa Negra # https://rosanegra.cat # Mexican # 0 # 0
+150. Sagas # https://sagasbarcelona.com # Spanish # 0 # 0
+151. San Tommaso # https://santommaso.es/barcelona/ # Italian # 0 # 0
+152. Santa Gula # https://santagula.es # Mediterranean # 0 # 0
+153. Serra # https://serrabarcelona.com # Mediterranean # 0 # 0
+154. Somodó # https://somodo.es # Japanese # 0 # 0
+155. Sopa Barcelona # https://sopabarcelona.com # Vegetarian # 0 # 0
+156. Suculent # https://suculent.cat # Spanish # 0 # 0
+157. Terraza Martínez # https://terrazzamartinez.com # Spanish # 0 # 0
+158. Tickets # https://www.ticketsbarcelona.com # Spanish # 0 # 0
+159. Via Granados # https://viagranados.com # Mediterranean # 0 # 0
+160. Viana Barcelona # https://vianabcn.com # Mediterranean # 0 # 0
+161. Vila Viniteca # https://vilaviniteca.com # Deli # 0 # 0
+162. Vía Veneto # https://viavenetobarcelona.com # Spanish # 0 # 0
