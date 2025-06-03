@@ -164,3 +164,4 @@ Name # Web # Cousine # Rating # Cost
 163. Vía Veneto # https://viavenetobarcelona.com # Spanish # 0 # 0
 164. 180º El Masnou # https://www.180elmasnou.com/ # Mediterranean # 3 # 2
 165. El Internacional # http://internacionalrestbar.com # Mexican # 2 # 2
+166. Bicos # http://www.bicosrestaurante.com # Galician # 3 # 2
