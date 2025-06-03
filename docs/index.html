@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>La Gran Ola 🌊 - Barcelona Guide</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                background: white;
+                color: #333;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 40px;
+                text-align: center;
+            }
+
+            .header {
+                margin-bottom: 40px;
+            }
+
+            .header h1 {
+                font-size: 3em;
+                margin-bottom: 20px;
+                color: #2c3e50;
+            }
+
+            .header p {
+                font-size: 1.3em;
+                color: #666;
+                margin-bottom: 40px;
+            }
+
+            .guide-cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+                margin-top: 40px;
+            }
+
+            .guide-card {
+                background: #f8f9fa;
+                border: 2px solid #e9ecef;
+                border-radius: 15px;
+                padding: 30px;
+                text-decoration: none;
+                color: #333;
+                transition: all 0.3s ease;
+            }
+
+            .guide-card:hover {
+                transform: translateY(-5px);
+                border-color: #3498db;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            }
+
+            .guide-card h2 {
+                font-size: 1.8em;
+                margin-bottom: 15px;
+                color: #2c3e50;
+            }
+
+            .guide-card p {
+                font-size: 1.1em;
+                color: #666;
+                line-height: 1.5;
+            }
+
+            .emoji {
+                font-size: 2.5em;
+                margin-bottom: 15px;
+                display: block;
+            }
+
+            @media (max-width: 768px) {
+                .container {
+                    padding: 20px;
+                }
+
+                .header h1 {
+                    font-size: 2.2em;
+                }
+
+                .header p {
+                    font-size: 1.1em;
+                }
+
+                .guide-cards {
+                    grid-template-columns: 1fr;
+                    gap: 20px;
+                }
+
+                .guide-card {
+                    padding: 25px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>La Gran Ola 🌊</h1>
+                <p>Your complete guide to Barcelona</p>
+            </div>
+
+            <div class="guide-cards">
+                <a href="eat.html" class="guide-card">
+                    <span class="emoji">🍽️</span>
+                    <h2>Restaurants Guide</h2>
+                    <p>Discover the best dining experiences in Barcelona. Search through 161 carefully curated restaurants by cuisine, price, and rating.</p>
+                </a>
+            </div>
+        </div>
+    </body>
+</html>
