@@ -121,6 +121,27 @@
                 top: 0;
                 z-index: 10;
                 border-bottom: 2px solid #ddd;
+                cursor: pointer;
+                user-select: none;
+                transition: background-color 0.2s;
+            }
+
+            th:hover {
+                background-color: #f5f5f5;
+            }
+
+            .sort-indicator {
+                margin-left: 8px;
+                font-size: 0.8em;
+                color: #666;
+            }
+
+            .sort-asc .sort-indicator::after {
+                content: "▲";
+            }
+
+            .sort-desc .sort-indicator::after {
+                content: "▼";
             }
 
             td {
@@ -318,10 +339,10 @@
                 <table id="restaurantTable">
                     <thead>
                         <tr>
-                            <th>Restaurant</th>
-                            <th>Cuisine</th>
-                            <th>Cost</th>
-                            <th>Rating</th>
+                            <th data-column="name">Restaurant<span class="sort-indicator"></span></th>
+                            <th data-column="cuisine">Cuisine<span class="sort-indicator"></span></th>
+                            <th data-column="cost">Cost<span class="sort-indicator"></span></th>
+                            <th data-column="rating">Rating<span class="sort-indicator"></span></th>
                         </tr>
                     </thead>
                     <tbody id="tableBody">
@@ -338,6 +359,7 @@
         <script>
             let allRestaurants = [];
             let filteredRestaurants = [];
+            let currentSort = { column: 'rating', direction: 'desc' };
 
             function getCostDisplay(cost) {
                 const costNum = parseInt(cost);
@@ -441,6 +463,56 @@
                 return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             }
 
+            function sortRestaurants(restaurants, column, direction) {
+                return [...restaurants].sort((a, b) => {
+                    let valueA, valueB;
+                    
+                    switch (column) {
+                        case 'name':
+                            valueA = a.name.toLowerCase();
+                            valueB = b.name.toLowerCase();
+                            break;
+                        case 'cuisine':
+                            valueA = a.cuisine.toLowerCase();
+                            valueB = b.cuisine.toLowerCase();
+                            break;
+                        case 'cost':
+                            valueA = parseInt(a.cost) || 0;
+                            valueB = parseInt(b.cost) || 0;
+                            break;
+                        case 'rating':
+                            valueA = parseInt(a.rating) || 0;
+                            valueB = parseInt(b.rating) || 0;
+                            break;
+                        default:
+                            return 0;
+                    }
+                    
+                    if (valueA < valueB) return direction === 'asc' ? -1 : 1;
+                    if (valueA > valueB) return direction === 'asc' ? 1 : -1;
+                    
+                    // Secondary sort by name for ties
+                    if (column !== 'name') {
+                        const nameA = a.name.toLowerCase();
+                        const nameB = b.name.toLowerCase();
+                        return nameA.localeCompare(nameB);
+                    }
+                    
+                    return 0;
+                });
+            }
+
+            function updateSortIndicators() {
+                document.querySelectorAll('th').forEach(th => {
+                    th.classList.remove('sort-asc', 'sort-desc');
+                });
+                
+                const currentHeader = document.querySelector(`th[data-column="${currentSort.column}"]`);
+                if (currentHeader) {
+                    currentHeader.classList.add(`sort-${currentSort.direction}`);
+                }
+            }
+
             function filterRestaurants() {
                 const searchTerm = removeDiacritics(
                     document.getElementById("searchInput").value.toLowerCase(),
@@ -462,6 +534,8 @@
                     return matchesSearch && matchesCuisine;
                 });
 
+                // Apply current sort to filtered results
+                filteredRestaurants = sortRestaurants(filteredRestaurants, currentSort.column, currentSort.direction);
                 renderTable();
             }
 
@@ -474,18 +548,13 @@
 
                     const data = await response.text();
                     allRestaurants = parseRestaurantData(data);
-                    // Sort by rating (highest first), then by name
-                    allRestaurants.sort((a, b) => {
-                        const ratingA = parseInt(a.rating);
-                        const ratingB = parseInt(b.rating);
-                        if (ratingB !== ratingA) {
-                            return ratingB - ratingA; // Higher rating first
-                        }
-                        return a.name.localeCompare(b.name); // Then by name alphabetically
-                    });
+                    
+                    // Apply initial sort
+                    allRestaurants = sortRestaurants(allRestaurants, currentSort.column, currentSort.direction);
                     filteredRestaurants = [...allRestaurants];
 
                     populateCuisineFilter();
+                    updateSortIndicators();
                     renderTable();
 
                     // Add event listeners
@@ -495,6 +564,25 @@
                     document
                         .getElementById("cuisineFilter")
                         .addEventListener("change", filterRestaurants);
+                    
+                    // Add sort event listeners
+                    document.querySelectorAll('th[data-column]').forEach(th => {
+                        th.addEventListener('click', () => {
+                            const column = th.dataset.column;
+                            
+                            if (currentSort.column === column) {
+                                // Toggle direction if same column
+                                currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+                            } else {
+                                // New column, start with ascending except for rating which starts descending
+                                currentSort.column = column;
+                                currentSort.direction = column === 'rating' ? 'desc' : 'asc';
+                            }
+                            
+                            updateSortIndicators();
+                            filterRestaurants();
+                        });
+                    });
                 } catch (error) {
                     document.getElementById("tableBody").innerHTML =
                         '<tr><td colspan="4" class="error">Error loading restaurant data. Please make sure restaurants.txt is available.</td></tr>';
