@@ -312,6 +312,7 @@
         </style>
     </head>
     <body>
+        <script src="jszip.min.js"></script>
         <div class="container">
             <div class="header">
                 <h1>La Gran Ola 🌊 - Barcelona Restaurants 🍽️ Guide</h1>
@@ -403,7 +404,9 @@
                         const name = nameMatch
                             ? nameMatch[1].trim()
                             : parts[0].replace(/^\d+\.\s*/, "");
-                        const number = numberMatch ? parseInt(numberMatch[1]) : 0;
+                        const number = numberMatch
+                            ? parseInt(numberMatch[1])
+                            : 0;
 
                         restaurants.push({
                             number: number,
@@ -482,36 +485,36 @@
             function sortRestaurants(restaurants, column, direction) {
                 return [...restaurants].sort((a, b) => {
                     let valueA, valueB;
-                    
+
                     switch (column) {
-                        case 'name':
+                        case "name":
                             valueA = a.number;
                             valueB = b.number;
                             break;
-                        case 'cuisine':
+                        case "cuisine":
                             valueA = a.cuisine.toLowerCase();
                             valueB = b.cuisine.toLowerCase();
                             break;
-                        case 'cost':
+                        case "cost":
                             valueA = parseInt(a.cost) || 0;
                             valueB = parseInt(b.cost) || 0;
                             break;
-                        case 'rating':
+                        case "rating":
                             valueA = parseInt(a.rating) || 0;
                             valueB = parseInt(b.rating) || 0;
                             break;
                         default:
                             return 0;
                     }
-                    
-                    if (valueA < valueB) return direction === 'asc' ? -1 : 1;
-                    if (valueA > valueB) return direction === 'asc' ? 1 : -1;
-                    
+
+                    if (valueA < valueB) return direction === "asc" ? -1 : 1;
+                    if (valueA > valueB) return direction === "asc" ? 1 : -1;
+
                     // Secondary sort by original number for ties
-                    if (column !== 'name') {
+                    if (column !== "name") {
                         return a.number - b.number;
                     }
-                    
+
                     return 0;
                 });
             }
@@ -563,12 +566,34 @@
 
             async function loadRestaurants() {
                 try {
-                    const response = await fetch("restaurants.txt");
+                    console.log("Starting to load restaurants.zip...");
+                    const response = await fetch("restaurants.zip");
                     if (!response.ok) {
-                        throw new Error("Failed to load restaurant data");
+                        throw new Error(
+                            `Failed to load restaurant data: ${response.status} ${response.statusText}`,
+                        );
                     }
 
-                    const data = await response.text();
+                    console.log("ZIP file fetched successfully, processing...");
+                    const zipBlob = await response.blob();
+                    console.log("ZIP blob size:", zipBlob.size);
+
+                    const zip = new JSZip();
+                    const zipContents = await zip.loadAsync(zipBlob);
+                    console.log(
+                        "ZIP loaded, files:",
+                        Object.keys(zipContents.files),
+                    );
+
+                    const restaurantFile = zipContents.file("restaurants.txt");
+                    if (!restaurantFile) {
+                        throw new Error(
+                            "restaurants.txt not found in ZIP file",
+                        );
+                    }
+
+                    const data = await restaurantFile.async("text");
+                    console.log("Data extracted, length:", data.length);
                     allRestaurants = parseRestaurantData(data);
 
                     // Apply initial sort
@@ -617,7 +642,7 @@
                         });
                 } catch (error) {
                     document.getElementById("tableBody").innerHTML =
-                        '<tr><td colspan="4" class="error">Error loading restaurant data. Please make sure restaurants.txt is available.</td></tr>';
+                        `<tr><td colspan="4" class="error">Error loading restaurant data: ${error.message}</td></tr>`;
                     console.error("Error loading restaurants:", error);
                 }
             }

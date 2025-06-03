@@ -53,6 +53,6 @@ NEXT_NUM=$(tail -1 restaurants.txt | cut -d'.' -f1 | awk '{print $1 + 1}')
 
 # Add new restaurant to file
 echo "$NEXT_NUM. $NAME # $URL # $CUISINE # $RATING # $COST" >> restaurants.txt
-cp restaurants.txt docs/
+zip docs/restaurants.zip restaurants.txt
 
 echo "Added restaurant: $NAME"
