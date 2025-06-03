@@ -2,6 +2,7 @@ let allRestaurants = [];
 let filteredRestaurants = [];
 let currentSort = { column: "name", direction: "asc" };
 let searchDebounceTimer = null;
+let urlUpdateTimer = null;
 
 function getCostDisplay(cost) {
   const costNum = parseInt(cost);
@@ -245,13 +246,80 @@ function filterRestaurants() {
   renderTable();
 }
 
+function parseUrlParams() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    search: params.get("search") || "",
+    cuisine: params.get("cuisine") || "",
+    sort: params.get("sort") || "name",
+    order: params.get("order") || "asc",
+  };
+}
+
+function updateUrl() {
+  clearTimeout(urlUpdateTimer);
+  urlUpdateTimer = setTimeout(() => {
+    const searchTerm = document.getElementById("searchInput").value;
+    const selectedCuisine = document.getElementById("cuisineFilter").value;
+
+    const params = new URLSearchParams();
+
+    if (searchTerm) {
+      params.set("search", searchTerm);
+    }
+
+    if (selectedCuisine) {
+      params.set("cuisine", selectedCuisine);
+    }
+
+    if (currentSort.column !== "name") {
+      params.set("sort", currentSort.column);
+    }
+
+    if (currentSort.direction !== "asc") {
+      params.set("order", currentSort.direction);
+    }
+
+    const newUrl = params.toString()
+      ? `${window.location.pathname}?${params.toString()}`
+      : window.location.pathname;
+
+    window.history.replaceState({}, "", newUrl);
+  }, 100);
+}
+
+function applyUrlParams() {
+  const params = parseUrlParams();
+
+  // Apply search term
+  if (params.search) {
+    document.getElementById("searchInput").value = params.search;
+  }
+
+  // Apply cuisine filter
+  if (params.cuisine) {
+    document.getElementById("cuisineFilter").value = params.cuisine;
+  }
+
+  // Apply sorting
+  currentSort.column = params.sort;
+  currentSort.direction = params.order;
+
+  updateSortIndicators();
+  filterRestaurants();
+}
+
 function debouncedFilterRestaurants() {
   clearTimeout(searchDebounceTimer);
-  searchDebounceTimer = setTimeout(filterRestaurants, 300);
+  searchDebounceTimer = setTimeout(() => {
+    filterRestaurants();
+    updateUrl();
+  }, 300);
 }
 
 async function loadRestaurants() {
   try {
+    // Load restaurants when page loads
     console.log("Starting to load restaurants.gz...");
     const response = await fetch("restaurants.gz");
     if (!response.ok) {
@@ -288,9 +356,10 @@ async function loadRestaurants() {
     document
       .getElementById("searchInput")
       .addEventListener("input", debouncedFilterRestaurants);
-    document
-      .getElementById("cuisineFilter")
-      .addEventListener("change", filterRestaurants);
+    document.getElementById("cuisineFilter").addEventListener("change", () => {
+      filterRestaurants();
+      updateUrl();
+    });
 
     // Add sort event listeners
     document.querySelectorAll("th[data-column]").forEach((th) => {
@@ -309,8 +378,18 @@ async function loadRestaurants() {
 
         updateSortIndicators();
         filterRestaurants();
+        updateUrl();
       });
     });
+
+    // Apply URL parameters if present
+    applyUrlParams();
+
+    // Focus the search input after everything is loaded (unless there's a search term from URL)
+    const urlParams = parseUrlParams();
+    if (!urlParams.search) {
+      document.getElementById("searchInput").focus();
+    }
   } catch (error) {
     document.getElementById("tableBody").innerHTML =
       `<tr><td colspan="4" class="error">Error loading restaurant data: ${error.message}</td></tr>`;
