@@ -71,7 +71,7 @@ function updateStats() {
   const cuisines = new Set(filteredRestaurants.map((r) => r.cuisine)).size;
 
   document.getElementById("stats").innerHTML =
-    `Showing ${filtered} of ${total} restaurants • ${cuisines} cuisines`;
+    `Showing ${filtered} of ${total} restaurants`;
 }
 
 function renderTable() {
