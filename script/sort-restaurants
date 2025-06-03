@@ -10,3 +10,4 @@ EOF
 
 cat restaurants.txt | gh models run openai/gpt-4.1 "$PROMPT" > restaurants.txt.new
 mv restaurants.txt.new restaurants.txt
+cp restaurants.txt docs/
