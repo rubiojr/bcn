@@ -178,6 +178,11 @@
                 font-weight: 600;
             }
 
+            .restaurant-number {
+                color: #888;
+                font-weight: normal;
+            }
+
             .cuisine-tag {
                 padding: 5px 12px;
                 border-radius: 20px;
@@ -339,10 +344,18 @@
                 <table id="restaurantTable">
                     <thead>
                         <tr>
-                            <th data-column="name">Restaurant<span class="sort-indicator"></span></th>
-                            <th data-column="cuisine">Cuisine<span class="sort-indicator"></span></th>
-                            <th data-column="cost">Cost<span class="sort-indicator"></span></th>
-                            <th data-column="rating">Rating<span class="sort-indicator"></span></th>
+                            <th data-column="name">
+                                Restaurant<span class="sort-indicator"></span>
+                            </th>
+                            <th data-column="cuisine">
+                                Cuisine<span class="sort-indicator"></span>
+                            </th>
+                            <th data-column="cost">
+                                Cost<span class="sort-indicator"></span>
+                            </th>
+                            <th data-column="rating">
+                                Rating<span class="sort-indicator"></span>
+                            </th>
                         </tr>
                     </thead>
                     <tbody id="tableBody">
@@ -359,7 +372,7 @@
         <script>
             let allRestaurants = [];
             let filteredRestaurants = [];
-            let currentSort = { column: 'rating', direction: 'desc' };
+            let currentSort = { column: "rating", direction: "desc" };
 
             function getCostDisplay(cost) {
                 const costNum = parseInt(cost);
@@ -386,11 +399,14 @@
                     const parts = line.split(" # ");
                     if (parts.length >= 5) {
                         const nameMatch = line.match(/^\d+\.\s*(.+?)\s*#/);
+                        const numberMatch = line.match(/^(\d+)\./);
                         const name = nameMatch
                             ? nameMatch[1].trim()
                             : parts[0].replace(/^\d+\.\s*/, "");
+                        const number = numberMatch ? parseInt(numberMatch[1]) : 0;
 
                         restaurants.push({
+                            number: number,
                             name: name,
                             website: parts[1].trim(),
                             cuisine: parts[2].trim(),
@@ -442,8 +458,8 @@
                         const nameCell =
                             restaurant.website === "No Web" ||
                             restaurant.website === "No oficial"
-                                ? `<span class="no-website">${restaurant.name} (no website)</span>`
-                                : `<a href="${restaurant.website}" target="_blank" class="restaurant-link">${restaurant.name}</a>`;
+                                ? `<span class="no-website"><span class="restaurant-number">${restaurant.number}.</span> ${restaurant.name} (no website)</span>`
+                                : `<a href="${restaurant.website}" target="_blank" class="restaurant-link"><span class="restaurant-number">${restaurant.number}.</span> ${restaurant.name}</a>`;
 
                         return `
                     <tr>
@@ -469,8 +485,8 @@
                     
                     switch (column) {
                         case 'name':
-                            valueA = a.name.toLowerCase();
-                            valueB = b.name.toLowerCase();
+                            valueA = a.number;
+                            valueB = b.number;
                             break;
                         case 'cuisine':
                             valueA = a.cuisine.toLowerCase();
@@ -491,11 +507,9 @@
                     if (valueA < valueB) return direction === 'asc' ? -1 : 1;
                     if (valueA > valueB) return direction === 'asc' ? 1 : -1;
                     
-                    // Secondary sort by name for ties
+                    // Secondary sort by original number for ties
                     if (column !== 'name') {
-                        const nameA = a.name.toLowerCase();
-                        const nameB = b.name.toLowerCase();
-                        return nameA.localeCompare(nameB);
+                        return a.number - b.number;
                     }
                     
                     return 0;
@@ -503,13 +517,17 @@
             }
 
             function updateSortIndicators() {
-                document.querySelectorAll('th').forEach(th => {
-                    th.classList.remove('sort-asc', 'sort-desc');
+                document.querySelectorAll("th").forEach((th) => {
+                    th.classList.remove("sort-asc", "sort-desc");
                 });
-                
-                const currentHeader = document.querySelector(`th[data-column="${currentSort.column}"]`);
+
+                const currentHeader = document.querySelector(
+                    `th[data-column="${currentSort.column}"]`,
+                );
                 if (currentHeader) {
-                    currentHeader.classList.add(`sort-${currentSort.direction}`);
+                    currentHeader.classList.add(
+                        `sort-${currentSort.direction}`,
+                    );
                 }
             }
 
@@ -535,7 +553,11 @@
                 });
 
                 // Apply current sort to filtered results
-                filteredRestaurants = sortRestaurants(filteredRestaurants, currentSort.column, currentSort.direction);
+                filteredRestaurants = sortRestaurants(
+                    filteredRestaurants,
+                    currentSort.column,
+                    currentSort.direction,
+                );
                 renderTable();
             }
 
@@ -548,9 +570,13 @@
 
                     const data = await response.text();
                     allRestaurants = parseRestaurantData(data);
-                    
+
                     // Apply initial sort
-                    allRestaurants = sortRestaurants(allRestaurants, currentSort.column, currentSort.direction);
+                    allRestaurants = sortRestaurants(
+                        allRestaurants,
+                        currentSort.column,
+                        currentSort.direction,
+                    );
                     filteredRestaurants = [...allRestaurants];
 
                     populateCuisineFilter();
@@ -564,25 +590,31 @@
                     document
                         .getElementById("cuisineFilter")
                         .addEventListener("change", filterRestaurants);
-                    
+
                     // Add sort event listeners
-                    document.querySelectorAll('th[data-column]').forEach(th => {
-                        th.addEventListener('click', () => {
-                            const column = th.dataset.column;
-                            
-                            if (currentSort.column === column) {
-                                // Toggle direction if same column
-                                currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
-                            } else {
-                                // New column, start with ascending except for rating which starts descending
-                                currentSort.column = column;
-                                currentSort.direction = column === 'rating' ? 'desc' : 'asc';
-                            }
-                            
-                            updateSortIndicators();
-                            filterRestaurants();
+                    document
+                        .querySelectorAll("th[data-column]")
+                        .forEach((th) => {
+                            th.addEventListener("click", () => {
+                                const column = th.dataset.column;
+
+                                if (currentSort.column === column) {
+                                    // Toggle direction if same column
+                                    currentSort.direction =
+                                        currentSort.direction === "asc"
+                                            ? "desc"
+                                            : "asc";
+                                } else {
+                                    // New column, start with ascending except for rating which starts descending
+                                    currentSort.column = column;
+                                    currentSort.direction =
+                                        column === "rating" ? "desc" : "asc";
+                                }
+
+                                updateSortIndicators();
+                                filterRestaurants();
+                            });
                         });
-                    });
                 } catch (error) {
                     document.getElementById("tableBody").innerHTML =
                         '<tr><td colspan="4" class="error">Error loading restaurant data. Please make sure restaurants.txt is available.</td></tr>';
