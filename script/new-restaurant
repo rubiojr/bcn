@@ -1,0 +1,17 @@
+#!/bin/sh
+set -e
+
+NAME=$(gum input --placeholder "Name")
+URL=$(gum input --placeholder "Website URL (or 'No Web')")
+CUISINE=$(gum input --placeholder "Cuisine type")
+RATING=$(gum input --placeholder "Rating (1-3)")
+COST=$(gum input --placeholder "Cost (1-3)")
+
+# Get the next restaurant number
+NEXT_NUM=$(tail -1 restaurants.txt | cut -d'.' -f1 | awk '{print $1 + 1}')
+
+# Add new restaurant to file
+echo "$NEXT_NUM. $NAME # $URL # $CUISINE # $RATING # $COST" >> restaurants.txt
+
+echo "Added restaurant: $NAME"
+./script/sort-restaurants
