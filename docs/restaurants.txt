@@ -162,3 +162,4 @@ Name # Web # Cousine # Rating # Cost
 161. Viana Barcelona # https://vianabcn.com # Mediterranean # 0 # 0
 162. Vila Viniteca # https://vilaviniteca.com # Deli # 0 # 0
 163. Vía Veneto # https://viavenetobarcelona.com # Spanish # 0 # 0
+164. 180º El Masnou # https://www.180elmasnou.com/ # Mediterranean # 3 # 2
