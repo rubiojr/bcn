@@ -10,7 +10,7 @@ Name # Web # Cousine # Rating # Cost
 9. Angle # https://www.restaurantangle.com # Mediterranean # 0 # 0
 10. Antiga Casa Rafael # https://anticacasarafael.com # Mediterranean # 0 # 0
 11. Antigua Casa Salvador # http://casasalvador.com # Mediterranean # 0 # 0
-12. Arc Iris # No Web # Vegetarian # 3 # 1
+12. Arc Iris # https://maps.app.goo.gl/oYsctJpRnmhwu1pbA # Vegetarian # 3 # 1
 13. Bala Roja (Hotel Edition) # https://editionhotels.com/barcelona/dining/bala-roja/ # Mediterranean # 0 # 0
 14. Bananas # https://bananasbarcelona.com # International # 0 # 0
 15. Bar Alegría # https://baralegriabcn.com # Mediterranean # 0 # 0
