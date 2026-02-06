@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+
+go run sort.go
+./script/gzip-file
+
+echo "Commit changes and push if you are happy :D"
