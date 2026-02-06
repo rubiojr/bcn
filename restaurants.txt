@@ -169,3 +169,8 @@ Name # Web # Cousine # Rating # Cost
 168. La Llama # https://maps.app.goo.gl/sGHCcXbeV43Xppff7 # Galician # 3 # 2
 169. La Bona Estrella # https://maps.app.goo.gl/QpsWVR1bK96SvwZP7 # Mediterranean # 3 # 2
 170. Ca la Rosi # http://calarosi.com # Mediterranean # 3 # 2
+171. Ramen-ya Hiro # https://www.ramenyahiro.com # Ramen # 0 # 0
+172. Grasshopper Ramen Bar # https://maps.app.goo.gl/grasshopper-born # Ramen # 0 # 0
+173. Koku Kitchen Ramen # https://kokukitchen.com # Ramen # 0 # 0
+174. Mutenroshi Ramen # http://mutenroshi.com # Ramen # 0 # 0
+175. Shoronpo # https://shoronpobcn.myrestoo.net/es/reservar # Ramen # 0 # 0
