@@ -139,7 +139,7 @@ Name # Web # Cousine # Rating # Cost
 138. Moments # https://barceloramarskepp.com/moments # Mediterranean # 0 # 0
 139. Mont Bar # https://montbar.com # Mediterranean # 0 # 0
 140. Moo # https://moobcn.com # Mediterranean # 0 # 0
-141. Mutenroshi Ramen # http://mutenroshi.com # Ramen # 0 # 0
+141. Mutenroshi Ramen # http://mutenroshi.com # Ramen # 2 # 2
 142. Nectari # https://restaurantnectari.com # Mediterranean # 0 # 0
 143. Oblikue # https://oblikue.cat # Mediterranean # 3 # 2
 144. Ocaña # https://ocana.barcelona # Mediterranean # 0 # 0
